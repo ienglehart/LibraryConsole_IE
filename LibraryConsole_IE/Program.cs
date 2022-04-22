@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LibraryConsole_IE
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             ConsoleApp console = new ConsoleApp();
             console.StartConsole(-1);

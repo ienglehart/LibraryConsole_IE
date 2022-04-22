@@ -52,6 +52,13 @@ namespace Common
                 {
                     item2.Username = update;
                 }
+            }else if(itemUpdating == "password")
+            {
+                //if()
+                foreach (UserDTO item2 in uList.User.Where(x => x.Username.Contains(arg)))
+                {
+                    item2.Password = update;
+                }
             }
         }
         public void Delete(string arg)

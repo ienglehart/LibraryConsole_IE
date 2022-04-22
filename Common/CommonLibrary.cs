@@ -111,7 +111,7 @@ namespace Common
         {
             Console.WriteLine("What is the username of the user you will be updating.");
             string user = Console.ReadLine();
-            Console.WriteLine("What aspect are you changing (Name, Username, or Role");
+            Console.WriteLine("What aspect are you changing (Name, Username, or Role)");
             string aspect = Console.ReadLine().ToLower();
             Console.WriteLine("What are you changing it to?"); 
             string change = Console.ReadLine();
@@ -121,10 +121,13 @@ namespace Common
 
         public void DeleteProfile()
         {
-            Console.WriteLine("What is the ID of the profile you wish to delete?");
-            string user = Console.ReadLine(); 
-            //int id = Convert.ToInt32(input);   
-            c.Delete(user);
+            Console.WriteLine("What is the username of the profile you wish to delete?");
+            string user = Console.ReadLine();
+            Console.WriteLine("This will not be recoverable, are you sure? (y/n)");
+            if(Console.ReadLine() == "y")
+            {
+                c.Delete(user);
+            }  
         }
 
 
@@ -166,7 +169,7 @@ namespace Common
 
         }
     
-    
+        
 
 
     }

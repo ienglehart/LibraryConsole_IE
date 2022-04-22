@@ -7,7 +7,7 @@ using Common;
 
 namespace LibraryConsole_IE
 {
-    internal class ConsoleApp
+    public class ConsoleApp
     {   
         CommonLibrary function = new CommonLibrary();
         public void StartConsole(int currentID)
