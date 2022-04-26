@@ -44,7 +44,7 @@ namespace Common
 
             int accept = 0;
             string role;
-            RoleDTO role2 = new RoleDTO() { RoleName = "Guest", RoleId = 4 };
+            int role_id = 0;
             do
             {
                 //remove and use enums slacker
@@ -54,17 +54,16 @@ namespace Common
                 if(role.ToLower() == "guest")
                 {
                     accept = 1;
-                    role2 = new RoleDTO() { RoleName = "Guest", RoleId = 4 };
                 }
                 else if(role.ToLower() == "librarian")
                 {
                     accept = 1;
-                    role2 = new RoleDTO() { RoleName = "Librarian", RoleId = 2 };
+                    role_id = 2;
                 }
                 else if(role.ToLower() == "patron")
                 {
                     accept = 1;
-                    role2 = new RoleDTO() { RoleName = "Patron", RoleId = 3 };
+                    role_id = 3;
                 }
                 else { Console.WriteLine("Not a valid role."); }
             } while (accept == 0);
@@ -78,14 +77,14 @@ namespace Common
 
             int id = GenerateID();
 
-            c.Create(id, name, role2, username, pass);
+            c.Create(id, name, role_id, username, pass);
         }
         public void RegisterAdmin()
         {
             Console.WriteLine("Enter a name to register");
             string name = Console.ReadLine();
 
-            RoleDTO role = new RoleDTO() { RoleId = 1 };
+            int role = 1;
             
             Console.WriteLine("What will the username be?");
             string username = Console.ReadLine();
@@ -158,7 +157,7 @@ namespace Common
         {
             CRUD c = new CRUD();
             UserDTO result = c.Read(id);
-            if(result.role.RoleName == "Admin")
+            if(result.role == 1)
             {
                 return true;
             }
