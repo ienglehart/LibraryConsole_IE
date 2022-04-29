@@ -10,11 +10,11 @@ namespace Common
 {
     public class CommonLibrary
     {
-        CRUD c = new CRUD();
+        CRUD db = new CRUD();
 
         public void PrintUsers()
         {
-            c.ReadAll();
+            db.ReadAll();
             Console.WriteLine();
         }
         public void PrintRoles()
@@ -29,7 +29,7 @@ namespace Common
             string passRaw = Console.ReadLine();
             string pass = Hash(passRaw);
 
-            UserDTO read = c.ReadUsername(usernameInput);
+            UserDTO read = db.ReadByUsername(usernameInput);
             
             if (read.Username == usernameInput && read.Password == pass)
             {
@@ -77,7 +77,7 @@ namespace Common
 
             int id = GenerateID();
 
-            c.Create(id, name, role_id, username, pass);
+            db.Create(id, name, role_id, username, pass);
         }
         public void RegisterAdmin()
         {
@@ -95,13 +95,13 @@ namespace Common
 
             int id = GenerateID();
 
-            c.Create(id, name, role, username, pass);
+            db.Create(id, name, role, username, pass);
         }
         public void PrintProfile(int id)
         {
             if(id != -1)
             {
-            UserDTO item = c.Read(id);
+            UserDTO item = db.ReadById(id);
             Console.WriteLine("ID: {0} Name: {1} Role: {2} Username: {3}", item.ID, item.Name, item.role, item.Username); 
             }
             else { Console.WriteLine("Not logged in."); }
@@ -115,7 +115,7 @@ namespace Common
             Console.WriteLine("What are you changing it to?"); 
             string change = Console.ReadLine();
 
-            c.Update(user, aspect, change);
+            db.Update(user, aspect, change);
         }
 
         public void DeleteProfile()
@@ -125,7 +125,7 @@ namespace Common
             Console.WriteLine("This will not be recoverable, are you sure? (y/n)");
             if(Console.ReadLine() == "y")
             {
-                c.Delete(user);
+                db.Delete(user);
             }  
         }
 
@@ -149,15 +149,13 @@ namespace Common
         
         public int GenerateID()
         {
-            CRUD crud = new CRUD();
-            return crud.ReadLength();
+            return db.HighID() + 1;
         } 
     
         public bool adminCheck(int id)
         {
-            CRUD c = new CRUD();
-            UserDTO result = c.Read(id);
-            if(result.role == 1)
+            UserDTO result = db.ReadById(id);
+            if(result.role.ToLower() == "admin")
             {
                 return true;
             }

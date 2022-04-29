@@ -16,7 +16,7 @@ namespace Database
                 Name = "Guest User",
                 Username = "Guest",
                 Password = "9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c",
-                role = 4
+                role = "guest"
             },
             new UserDTO()
             {
@@ -24,7 +24,7 @@ namespace Database
                 Name = "Ian Englehart",
                 Username = "ienglehart",
                 Password = "9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c",
-                role = 1
+                role = "admin"
             },
             new UserDTO()
             {
@@ -32,7 +32,7 @@ namespace Database
                 Name = "Ray Smith",
                 Username = "rsmith",
                 Password = "9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c",
-                role = 3
+                role = "librarian"
             }
         };
     }
